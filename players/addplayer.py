@@ -13,8 +13,8 @@ hs = input("Headshot Percentage --> ")
 awp = input("Awper? [0/1] --> ")
 awprating = input("Awp Rating --> ")
 # Support
-supportrating = input("Support Rating --> ")
-iglrating = input("IGL Rating --> ")
+# supportrating = input("Support Rating --> ")
+# iglrating = input("IGL Rating --> ")
 
 # add team properties
 f = open("players/" + playername + ".txt", "w")

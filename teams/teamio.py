@@ -10,7 +10,6 @@ def readteam(team):
   for i in value:
     value[count] = i.strip()
     count += 1
-  print(value)
 
   file.close()
   return value
@@ -72,6 +71,3 @@ def calculate(team):
 
 def teamio_menu():
   return
-
-modify("test")
-teamio_menu()

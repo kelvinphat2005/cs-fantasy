@@ -1,9 +1,9 @@
-test player
+test player 5
 50
 50
 1
 1
 1
 50
-0
+1
 1

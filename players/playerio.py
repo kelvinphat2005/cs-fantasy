@@ -1,6 +1,6 @@
 def readplayer(player):
   value = []
-  file = open("player/" + player + ".txt","r")
+  file = open("players/" + player + ".txt","r")
   value = file.readlines()
 
   # removing /n
@@ -8,13 +8,12 @@ def readplayer(player):
   for i in value:
     value[count] = i.strip()
     count += 1
-  print(value)
 
   file.close()
   return value
 
 def writeplayer(player,input_list):
-  file = open("player/" + player + ".txt", "w")
+  file = open("players/" + player + ".txt", "w")
   for i in input_list:
     file.write(i + "\n")
   file.close()

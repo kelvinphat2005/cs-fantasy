@@ -1,4 +1,6 @@
 import random
+from players.playerio import readplayer
+from teams.teamio import readteam
 
 # CS rounds are 155s
 
@@ -15,9 +17,14 @@ full_t = {1800: 8, 2700: 11, 4750: 16}
 util = {650: 1, 1000: 2, 500: 1, 300: 1, 200: 1, 300: 1}
 # KEVLAR, KEVLAR + HELMET, MOLLY, SMOKE, FLASH, HE
 
+'''
+Game Simulation
+'''
+
+# Add Player
 class player():
 
-  def __init__(self,playername,money,firepower,openingwin,openingrate,riflerating,pistolrating,ecorating,hs,awp,awprating,supportrating,iglrating):
+  def __init__(self,playername,money,firepower,openingwin,openingrate,riflerating,pistolrating,ecorating,hs,awp,awprating):
     self.playername = playername
     self.money = money
     self.firepower = firepower
@@ -29,9 +36,24 @@ class player():
     self.hs = hs
     self.awp = awp
     self.awprating = awprating
-    self.supportrarting = supportrating # probably not going to be used
-    self.iglrating = iglrating # probably not going to be used
+    return
 
+  def money(self,change): # add or remove money
+    self.money += change
+    return
+
+  def firepower(self,change): # add or remove firepeower
+    self.firepower += change
+    return
+
+# Creating Players
+def load_player(team,playernum):
+  team_info = readteam(team)
+  player_info = readplayer(team_info[playernum])
+  player1 = player(player_info[0],800,0,player_info[1],player_info[2],player_info[3],player_info[4],player_info[5],player_info[6],player_info[7],player_info[8])
+  return player1
+
+# Game
 class game():
 
   def __init__(self,team1,team2):
@@ -39,12 +61,28 @@ class game():
     self.team2 = team2
 
   def fast(self): # calculates each round
+    # Loading player
+    print("LOADING PLAYERS")
+    player1 = load_player(self.team1,1)
+    player2 = load_player(self.team1,2)
+    player3 = load_player(self.team1,3)
+    player4 = load_player(self.team1,4)
+    player5 = load_player(self.team1,5)
+    player6 = load_player(self.team2,1)
+    player7 = load_player(self.team2,2)
+    player8 = load_player(self.team2,3)
+    player9 = load_player(self.team2,4)
+    player10 = load_player(self.team2,5)
+
+    print(player10.money)
+    print(player10.awp)
+
     rounds = 1 
     half = 0 # first 15 rounds
     
     while half < 2: # Regulation
       # Pistol Round
-      print("Round 1")
+      print("Round " + str(rounds))
       while rounds < 14: # Half
         
         rounds += 1
@@ -59,7 +97,12 @@ class game():
     while secs < 155:
       break
 
-####
+team1 = readteam("test")
+team2 = readteam("test 2")
+run = game("test", "test 2")
+run.fast()
+
+'''
 def bo1(self,odds1):
     print("Best of 1: ")
     global ot_number
@@ -86,3 +129,4 @@ def bo1(self,odds1):
       return 1
     else:
       return 2
+'''
