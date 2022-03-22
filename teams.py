@@ -42,7 +42,7 @@ class Teams():
       )
 
 
-    def __repr__(self):
-      return f"Team('{self.name}',{self.player1})"
+  def __repr__(self):
+    return f"Team('{self.name}',{self.player1})"
 
 Teams.instantiate_from_csv()

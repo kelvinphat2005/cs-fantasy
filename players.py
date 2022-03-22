@@ -56,7 +56,6 @@ class Players():
       players = list(reader)
 
     for player in players:
-      print(player)
       Players(
         name=player.get("name"),
         money=float(player.get("money")),
@@ -70,9 +69,46 @@ class Players():
         awprating=float(player.get("awprating")),
       )
 
+  @staticmethod
+  def add_player():
+    create_player()
+  
+  def __repr__(self):
+    return f"Players('{self.name}',{self.money},{self.firepower},{self.openingwin},{self.openingrate},{self.riflerating},{self.pistolrating},{self.hs},{self.awp},{self.awprating})"
 
-    def __repr__(self):
-      return f"Players('{self.name}',{self.money},{self.firepower},{self.openingwin},{self.openingrate},{self.riflerating},{self.pistolrating},{self.hs},{self.awp},{self.awprating})"
+def create_player():
+  print("ADD PLAYER MENU")
+  current_prompt = 0
+  prompts = ("Player Name","Opening Rating","Opening Attempt Rate","Rifle Rating","Pistol Rating","Headshot %","AWPer?","AWP Rating")
+  new_player = []
+  # Getting Values
+  i = input(f"{prompts[current_prompt]} --> ") # Team Name
+  new_player.append(i)
+  current_prompt += 1
+  while current_prompt < len(prompts):
+    try:
+      i = float(input(f"{prompts[current_prompt]} --> "))
+    except ValueError:
+      print("Input Number")
+      break
+      
+    # checking if float
+    if isinstance(i, float): 
+      current_prompt += 1
+      i = str(i)
+      new_player.append(i)
 
-# Players.instantiate_from_csv()
-# print(Players.all[1].name)
+  # adding money and firepower to new_player
+  new_player.insert(1,"1") # fp
+  new_player.insert(1,"800") # money
+  
+  # adding new player to players.csv
+  with open("players.csv","a") as f:
+    f.write("\n"+",".join(new_player).strip(""))
+
+  return
+
+'''create_player()
+
+Players.instantiate_from_csv()
+print(Players.all)'''
