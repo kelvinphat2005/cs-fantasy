@@ -41,8 +41,28 @@ class Teams():
         player5=team.get("player5"),
       )
 
-
+  @staticmethod
+  def add_team():
+    create_team()
+  
   def __repr__(self):
     return f"Team('{self.name}',{self.player1})"
 
-Teams.instantiate_from_csv()
+def create_team():
+  print("ADD TEAM MENU")
+  current_prompt = 0
+  prompts = ("Team Name [NO SPACES]","Player 1 Name","Player 2 Name","Player 3 Name","Player 4 Name","Player 5 Name")
+  new_player = []
+  # Getting Values
+  while current_prompt < len(prompts):
+    i = input(f"{prompts[current_prompt]} --> ") # Team Name
+    new_player.append(i)
+    current_prompt += 1
+
+  # adding new player to players.csv
+  with open("teams.csv","a") as f:
+    f.write("\n"+",".join(new_player).strip(""))
+
+  return
+
+# Teams.instantiate_from_csv()

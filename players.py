@@ -15,12 +15,12 @@ class Players():
     self.__money = money
     self.__firepower = firepower
     self.__openingwin = openingwin # use later
-    self.openingrate = openingrate # use later
-    self.riflerating = riflerating
-    self.pistolrating = pistolrating # use later
-    self.hs = hs
-    self.awp = awp
-    self.awprating = awprating
+    self.__openingrate = openingrate # use later
+    self.__riflerating = riflerating
+    self.__pistolrating = pistolrating # use later
+    self.__hs = hs
+    self.__awp = awp
+    self.__awprating = awprating
 
     Players.all.append(self)
     return
@@ -40,6 +40,31 @@ class Players():
   @property
   def openingwin(self):
     return self.__openingwin
+
+  @property
+  def openingrate(self):
+    return self.__openingrate
+  
+  @property
+  def riflerating(self):
+    return self.__riflerating
+
+  @property
+  def pistolrating(self):
+    return self.__pistolrating
+
+  @property
+  def hs(self):
+    return self.__hs
+
+  @property
+  def awp(self):
+    return self.__awp
+
+  @property
+  def awprating(self):
+    return self.__awprating
+
 
   @money.setter
   def money(self,value):
@@ -108,7 +133,5 @@ def create_player():
 
   return
 
-'''create_player()
-
-Players.instantiate_from_csv()
+'''Players.instantiate_from_csv()
 print(Players.all)'''
