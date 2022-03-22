@@ -1,6 +1,5 @@
 from old.randombattle import *
 from old.odds import *
-from teams.teamio import *
 
 global team1odds
 
