@@ -24,6 +24,26 @@ class Teams():
   def name(self):
     return self.__name
 
+  @property
+  def player1(self):
+    return self.__player1
+
+  @property
+  def player2(self):
+    return self.__player2
+
+  @property
+  def player3(self):
+    return self.__player3
+
+  @property
+  def player4(self):
+    return self.__player4
+
+  @property
+  def player5(self):
+    return self.__player5
+  
   @classmethod
   def instantiate_from_csv(cls): # load all players from csv file
     with open("teams.csv", "r") as f:
@@ -46,22 +66,22 @@ class Teams():
     create_team()
   
   def __repr__(self):
-    return f"Team('{self.name}',{self.player1})"
+    return f"Team('{self.__name}',{self.__player1})"
 
 def create_team():
   print("ADD TEAM MENU")
   current_prompt = 0
   prompts = ("Team Name [NO SPACES]","Player 1 Name","Player 2 Name","Player 3 Name","Player 4 Name","Player 5 Name")
-  new_player = []
+  new_team = []
   # Getting Values
   while current_prompt < len(prompts):
     i = input(f"{prompts[current_prompt]} --> ") # Team Name
-    new_player.append(i)
+    new_team.append(i)
     current_prompt += 1
 
   # adding new player to players.csv
   with open("teams.csv","a") as f:
-    f.write("\n"+",".join(new_player).strip(""))
+    f.write("\n"+",".join(new_team).strip(""))
 
   return
 
