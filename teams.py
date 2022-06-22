@@ -10,39 +10,15 @@ class Teams():
     # assert money >= 0, f"Money of {money} cannot be negative"
     
     # Initialize
-    self.__name = name
-    self.__player1 = player1
-    self.__player2 = player2
-    self.__player3 = player3
-    self.__player4 = player4
-    self.__player5 = player5
+    self.name = name
+    self.player1 = player1
+    self.player2 = player2
+    self.player3 = player3
+    self.player4 = player4
+    self.player5 = player5
 
     Teams.all.append(self)
     return
-
-  @property # Property Decorator = Read-only Attribute
-  def name(self):
-    return self.__name
-
-  @property
-  def player1(self):
-    return self.__player1
-
-  @property
-  def player2(self):
-    return self.__player2
-
-  @property
-  def player3(self):
-    return self.__player3
-
-  @property
-  def player4(self):
-    return self.__player4
-
-  @property
-  def player5(self):
-    return self.__player5
   
   @classmethod
   def instantiate_from_csv(cls): # load all players from csv file

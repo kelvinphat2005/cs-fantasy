@@ -5,74 +5,26 @@ class Players():
 
   all = []
   
-  def __init__(self,name: str,money,firepower,openingwin,openingrate,riflerating,pistolrating,hs,awp,awprating):
+  def __init__(self,name: str,money,firepower,riflerating,pistolrating,awprating,gun,awp):
     print(f"Created player {name}")
     # Validations
     # assert money >= 0, f"Money of {money} cannot be negative"
     
     # Initialize
-    self.__name = name
-    self.__money = money
-    self.__firepower = firepower
-    self.__openingwin = openingwin # use later
-    self.__openingrate = openingrate # use later
-    self.__riflerating = riflerating
-    self.__pistolrating = pistolrating # use later
-    self.__hs = hs
-    self.__awp = awp
-    self.__awprating = awprating
+    self.name = name
+    self.money = money
+    self.firepower = firepower
+    self.riflerating = riflerating
+    self.pistolrating = pistolrating
+    self.awprating = awprating
+    self.gun = gun
+    self.awp = awp
 
     Players.all.append(self)
     return
 
-  @property # Property Decorator = Read-only Attribute
-  def name(self):
-    return self.__name
-
-  @property
-  def money(self):
-    return self.__money
-
-  @property
-  def firepower(self):
-    return self.__firepower
-  
-  @property
-  def openingwin(self):
-    return self.__openingwin
-
-  @property
-  def openingrate(self):
-    return self.__openingrate
-  
-  @property
-  def riflerating(self):
-    return self.__riflerating
-
-  @property
-  def pistolrating(self):
-    return self.__pistolrating
-
-  @property
-  def hs(self):
-    return self.__hs
-
-  @property
-  def awp(self):
-    return self.__awp
-
-  @property
-  def awprating(self):
-    return self.__awprating
-
-
-  @money.setter
-  def money(self,value):
-    self.money = value
-
-  @firepower.setter
-  def firepower(self,value):
-    self.firepower = value
+  def set_team(self, team_name):
+    self.team = team_name
   
   @classmethod
   def instantiate_from_csv(cls): # load all players from csv file
@@ -85,13 +37,11 @@ class Players():
         name=player.get("name"),
         money=float(player.get("money")),
         firepower=float(player.get("firepower")),
-        openingwin=float(player.get("openingwin")),
-        openingrate=float(player.get("openingrate")),
         riflerating=float(player.get("riflerating")),
         pistolrating=float(player.get("pistolrating")),
-        hs=float(player.get("hs")),
-        awp=IndentationError(player.get("awp")),
         awprating=float(player.get("awprating")),
+        gun=player.get("gun"),
+        awp=IndentationError(player.get("awp")),
       )
 
   @staticmethod
@@ -99,7 +49,7 @@ class Players():
     create_player()
   
   def __repr__(self):
-    return f"Players('{self.name}',{self.money},{self.firepower},{self.openingwin},{self.openingrate},{self.riflerating},{self.pistolrating},{self.hs},{self.awp},{self.awprating})"
+    return f"Players('Name: {self.name},Money: {self.money},Firepower: {self.firepower},Rifle Rating: {self.riflerating},Pistol Rating:{self.pistolrating},AWP Rating: {self.awprating},Gun: {self.gun},AWP: {self.awp}')"
 
 def create_player():
   print("ADD PLAYER MENU")

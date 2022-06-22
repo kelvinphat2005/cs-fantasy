@@ -1,21 +1,76 @@
 from players import Players
 from teams import Teams
 
+# List of Players
+team1 = []
+team2 = []
+
+teams = [team1,team2]
+
 def main():
   print("Hello World")
-  test("team1","team2")
+  print(calculate_odds())
   return
 
+# Calculate odds of team1 winning: returns range(0,1)
+def calculate_odds():
+  odds = 0
+  # 0 = Eco/Pistol
+  # 1 = Half Buy (2-3 Rifles)
+  # 2 = Full Buy (At least 4 rifles)
+  # [team1_round_type, team2_round_type]
+  round_type = [0,0]
+  team1, team2 = load_players("team1","team2")
+  # [team1_firepower, team2_firepower]
+  firepower = [0,0]
+
+  print(team1)
+  print(team2)
+  teams = [team1,team2]
+  
+  # identify team buy
+  for x in range(2):
+    rifle_count = 0
+    print(teams[x])
+    for i in teams[x]: # check through team for rifles
+      if i.gun == "rifle":
+        rifle_count += 1
+        print("Rifle")
+      else:
+        print("No Rifle")
+    if rifle_count > 4:
+      print(f'Team {x+1}: Rifle Round')
+      round_type[x] = 2
+    elif rifle_count > 2:
+      print(f'Team {x+1}: Half Buy')
+      round_type[x] = 1
+    else:
+      print(f'Team {x+1}: Eco/Pistol Round')
+      round_type[x] = 0
+
+      
+  return odds
+
+def load_players(team_a,team_b):
+  print("Initializing Players")
+  team1 = get_players(team_a) #very efficient code
+  team2 = get_players(team_b)
+  team1 = get_stats(team1)
+  team2 = get_stats(team2)
+  return team1, team2
+  
+# check if working correctly
 def test(team1: str,team2: str):
   # Initialize Players
   print("Initializing Players")
-  team1 = get_players("team1") #very efficient code
-  team2 = get_players("team2")
-  team1 = get_stats(team1)
-  team2 = get_stats(team2)
-  # print(f"Team 1 Players: {team1}")
-  # print(f"Team 2 Players: {team2}")
-  
+  team1test = get_players("team1") #very efficient code
+  team2test = get_players("team2")
+  team1test = get_stats(team1test)
+  team2test = get_stats(team2test)
+  print("Printing out objects in team1")
+  for i in team1test:
+    print(i)
+
 '''
 
 Grabbing Stats
@@ -55,7 +110,7 @@ def get_stats(player_list: list):
   # look for players
   for player in Players.all:
     if player.name in player_list:
-      print(f"Name: {player.name} Info: {player}")
+      # print(f"Name: {player.name} Info: {player}")
       player_stats.append(player)
   
   return player_stats

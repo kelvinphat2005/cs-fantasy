@@ -7,9 +7,15 @@ def random_menu():
   while True:
     i = input("[1] BO1 [2] BO3 [3] BO5 [4] Exit--> ")
     if i == "1":
-      bo1()
+      ddd = 0
+      while ddd < 5:
+        bo1()
+        ddd += 1
     elif i == "2":
-      bo3()
+      ddd = 0
+      while ddd < 3:
+        bo3()
+        ddd += 1
     elif i == "3":
       bo5()
     elif i == "4":
