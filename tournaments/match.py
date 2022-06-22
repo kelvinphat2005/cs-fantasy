@@ -42,7 +42,7 @@ class Match:
     print(f"|{self.team1} {(14 - len(self.team1)) * ' '}| {score[0]} |")
     print(f"|{self.team2} {(14 - len(self.team2)) * ' '}| {score[1]} |")
     print("---------------------")
-    print(f"input id: {self.input_id} loser_id: {self.loser_id} winner_id: {self.winner_id}")
+    # print(f"input id: {self.input_id} loser_id: {self.loser_id} winner_id: {self.winner_id}")
   
   def set_result(self,new_result):
     self.result = new_result

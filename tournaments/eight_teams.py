@@ -3,8 +3,12 @@ import random
 
 all_matches = []
 
-print("instantiating quarter-final matches objects")
+'''
+8 Teams - Single Elimination
+Creating all matches
+'''
 
+print("instantiating quarter-final matches objects")
 for i in range(1,5): # quarter-final matches
   if i % 2 == 0:
     new_match = Match(i,-1, int(i- i/2) +4)
@@ -23,6 +27,11 @@ all_matches.append(new_match)
 new_match = Match(7,-1,-1)
 all_matches.append(new_match)
 
+'''
+Functions
+'''
+
+# displays the whole bracket vertically
 def print_bracket():
   count = 1
   print("Quarter-finals")
@@ -41,19 +50,18 @@ def print_bracket():
   print("Grand-finals")
   all_matches[6].draw()
 
+# give all matches a random result
 def randomize_bracket():
   for i in all_matches:
     i.result = random.randint(1,4)
 
+# get index (for all_matches) for a match with 'id'
 def look_for(id):
   ind = 0
   if id == -1:
       return -1
   for i in all_matches:
-    print(i)
-    print(f"winner_id: {i.winner_id} loser_id: {i.loser_id}")
     if i.input_id == id:
-        print(f"Index: {ind}")
         return ind
       
     ind += 1
@@ -71,12 +79,9 @@ def update():
         update [i.team2] = i.winner_id
         update [i.team1] = i.loser_id
 
-  print(update)
-  
   for key, value in update.items():
     index = look_for(value)
     if index != -1:
-      print("did something")
       if all_matches[index].team1 == "Empty":
         all_matches[index].team1 = key
       else:
